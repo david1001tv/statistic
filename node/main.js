@@ -2,9 +2,9 @@
  * Module dependencies
  */
 const express = require('express');
-const compression = require('compression');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const compression = require('compression');
 const chalk = require('chalk');
 
 const config = require('./config');

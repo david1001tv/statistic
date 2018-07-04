@@ -1,8 +1,8 @@
 module.exports = {
     port: 8080,
-    dbName: 'chess',
+    dbName: 'news',
     db: {
-        database: 'chess',
+        database: 'news',
         user: 'root',
         password: '',
         port: 3306,
