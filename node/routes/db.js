@@ -6,7 +6,8 @@ const {
 } = require('../controllers/db/inserter');
 
 const {
-    selecter,
+    selecterAll,
+    selecterNew,
 } = require('../controllers/db/select')
 
 /*
@@ -14,6 +15,7 @@ const {
  */
 
 router.post('/insert', inserter);
-router.get('/select', selecter);
+router.get('/select/all', selecterAll);
+router.get('/select/new', selecterNew);
 
 module.exports = router;
