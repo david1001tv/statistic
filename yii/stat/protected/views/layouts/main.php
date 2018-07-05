@@ -32,5 +32,26 @@
 
 </div><!-- page -->
 
+<script type="text/javascript">
+
+	fetch('http:loclahost:8080/api/get/select/all', {
+          method: 'get'
+        }).then(function(response) {
+          document.getElementById('widget').innerHTML = response
+        }).catch(function(err) {
+          // Error :(
+		});
+
+	setInterval(function () {
+        fetch('http:loclahost:8080/api/get/select/new', {
+          method: 'get'
+        }).then(function(response) {
+          document.getElementById('widget').innerHTML = response
+        }).catch(function(err) {
+          // Error :(
+        });
+    }, 1000) 
+</script>
+
 </body>
 </html>
