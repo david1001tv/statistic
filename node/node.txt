@@ -1,1 +1,11 @@
 Folder for Node
+
+setInterval(function () {
+        fetch('/some/url', {
+          method: 'get'
+        }).then(function(response) {
+          document.getElementById('weather').innerHTML = response
+        }).catch(function(err) {
+          // Error :(
+        });
+      }, 1000) 
