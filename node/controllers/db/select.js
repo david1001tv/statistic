@@ -25,13 +25,19 @@ module.exports = {
             FROM news INNER JOIN news_temp ON news.id = news_temp.news_id', 
             { type: sequelize.QueryTypes.SELECT}))
             .then(news => {
-                console.log('get data success!');
-                res.status(200).json({
-                    success: true,
-                    news: news,
-                });
-                sequelize.query('DELETE FROM news_temp');
-                console.log('delete data success!');
+                console.log(news);
+                if(news.length > 0){
+                    res.status(200).json({
+                        success: true,
+                        news: news,
+                    });
+                    sequelize.query('DELETE FROM news_temp');
+                    console.log('delete data success!');
+                } else {
+                    res.status(200).json({
+                        success: false,
+                    });
+                }
             });
         } catch (error) {
             console.error(error);
