@@ -3,11 +3,12 @@ const express = require('express');
 const router = express.Router();
 const {
     inserter,
-} = require('../controllers/db/inserter');
+    deleter,
+    updater
+} = require('../controllers/db/IDU');
 
 const {
-    selecterAll,
-    selecterNew,
+    selecter,
 } = require('../controllers/db/select')
 
 /*
@@ -15,7 +16,8 @@ const {
  */
 
 router.post('/insert', inserter);
-router.get('/select/all', selecterAll);
-router.get('/select/new', selecterNew);
+router.post('/delete', deleter);
+router.post('/update', updater);
+router.get('/select', selecter);
 
 module.exports = router;

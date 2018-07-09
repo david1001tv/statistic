@@ -32,42 +32,35 @@
 
 </div><!-- page -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
 <script type="text/javascript">
-
-	fetch('http://localhost:8080/api/get/select/all', {
-          method: 'get'
-        }).then(function(res) {
-					res.json().then(function(data){
-						console.log(data);
-						data.news.forEach(e => {
-							let parent = document.getElementById('widget');
-							let d = document.createElement("div");
-							d.innerHTML = e.name + ' - ' + e.content;
-							parent.appendChild(d);
-						})
+	const socket = io.connect('http://localhost:8080');
+	socket.on('connection_custom', function (data) {
+		console.log(data.url);
+		fetch(data.url, {
+			method: 'get'
+		}).then(function(res) {
+			res.json().then(function(data){
+				console.log(data);
+				if(data.success === true){
+					let parent = document.getElementById('widget');
+					while (parent.firstChild) {
+						parent.removeChild(parent.firstChild);
+					}
+					data.news.forEach(e => {
+						let d = document.createElement("div");
+						d.setAttribute("id", e.id);
+						d.innerHTML = e.name + ' - ' + e.content;
+						parent.appendChild(d);
 					})
-        }).catch(function(err) {
-          // Error :(
+				}
+			})
+		}).catch(function(err) {
+			console.log(err);
 		});
-
-	setInterval(function () {
-        fetch('http://localhost:8080/api/get/select/new', {
-          method: 'get'
-        }).then(function(res) {res.json().then(function(data){
-						console.log(data);
-						if(data.success === true){
-							data.news.forEach(e => {
-								let parent = document.getElementById('widget');
-								let d = document.createElement("div");
-								d.innerHTML = e.name + ' - ' + e.content;
-								parent.appendChild(d);
-							})
-						}
-					})
-        }).catch(function(err) {
-          // Error :(
-        });
-    }, 1000)
+	});
 </script>
 
 </body>

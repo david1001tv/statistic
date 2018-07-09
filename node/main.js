@@ -12,7 +12,8 @@ const config = require('./config');
 const cors = require('cors');
 
 const app = express();
-module.exports = app;
+
+//module.exports = app;
 
 /**
  * Express configuraion
@@ -31,14 +32,25 @@ app.enable('trust proxy');
 /**
  * API routes
  */
-app.use('/api/add', require('./routes/db'));
-app.use('/api/get', require('./routes/db'));
-
+app.use('/api', require('./routes/db'));
 
 /**
  * Start Express server.
  */
-app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), () => {
     console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
     console.log('  Press CTRL-C to stop\n');
+});
+
+const io = require('socket.io');
+const socket = io.listen(server);
+const mySockets = {
+    namespace: socket.sockets,
+};
+
+exports.sockets = mySockets;
+
+socket.sockets.on('connection', function (_socket) {
+    console.log('connected');
+    socket.sockets.emit('connection_custom', { url: 'http://localhost:8080/api/select' });
 });
