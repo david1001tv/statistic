@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-const { News } = require('../../models/index');
-const mySockets = require('../../main');
+const { News } = require('../models/index');
+const objSockets = require('../main');
 
 module.exports = {
     inserter: async function (req, res) {
@@ -13,8 +13,8 @@ module.exports = {
                     content: body.content,
                 });
             }));
-
-            mySockets.sockets.namespace.emit('connection_custom', { url: 'http://localhost:8080/api/select' });
+            
+            objSockets.objSockets().emit('connection_custom', { url: 'http://localhost:8080/api/select' });
 
             res.status(200).json({
                 success: true,
