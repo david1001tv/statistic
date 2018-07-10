@@ -1,0 +1,7 @@
+.view {
+    border: 1px blue;
+}
+
+.view .title, .view .content {
+    font: Arial 18px;
+}
