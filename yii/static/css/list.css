@@ -5,3 +5,9 @@
 .view .title, .view .content {
     font: Arial 18px;
 }
+
+.view .title {
+    color: #d31010;
+    font-weight: 500;
+    font-size: large;
+}

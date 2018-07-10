@@ -45,13 +45,27 @@
 				console.log(data);
 				if(data.success === true){
 					let parent = document.getElementById('widget');
+
 					while (parent.firstChild) {
 						parent.removeChild(parent.firstChild);
 					}
+					
 					data.news.forEach(e => {
-						let d = document.createElement("div");
-						d.setAttribute("id", e.id);
-						d.innerHTML = e.name + ' - ' + e.content;
+						let view = document.createElement("div");
+						view.setAttribute("id", e.id);
+						view.setAttribute("class", "view");
+
+						let title = document.createElement("p");
+						title.setAttribute("class", 'title');
+						title.innerHTML = e.name;
+
+						let content = document.createElement("p");
+						content.setAttribute('class', 'content');
+						content.innerHTML = e.content;
+
+						view.appendChild(title);
+						view.appendChild(content);
+
 						parent.appendChild(d);
 					})
 				}
