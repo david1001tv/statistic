@@ -38,7 +38,6 @@
 <script type="text/javascript">
 	const socket = io.connect('http://localhost:8080');
 	socket.on('connection_custom', function (data) {
-		console.log(data.url);
 		fetch(data.url, {
 			method: 'get'
 		}).then(function(res) {

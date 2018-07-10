@@ -5,11 +5,11 @@ const {
     inserter,
     deleter,
     updater
-} = require('../controllers/db/IDU');
+} = require('../controllers/IDU');
 
 const {
     selecter,
-} = require('../controllers/db/select')
+} = require('../controllers/select')
 
 /*
  /api/auth/
