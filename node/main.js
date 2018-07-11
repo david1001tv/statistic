@@ -44,11 +44,9 @@ const server = app.listen(app.get('port'), () => {
 
 const io = require('socket.io');
 const socket = io.listen(server);
-const mySockets = {
-    namespace: socket.sockets,
-};
-
-exports.sockets = mySockets;
+module.exports.objSockets = function(){
+    return socket.sockets;
+}
 
 socket.sockets.on('connection', function (_socket) {
     console.log('connected');

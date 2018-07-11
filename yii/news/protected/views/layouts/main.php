@@ -66,7 +66,7 @@
 						view.appendChild(title);
 						view.appendChild(content);
 
-						parent.appendChild(d);
+						parent.appendChild(view);
 					})
 				}
 			})

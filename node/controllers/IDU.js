@@ -33,7 +33,7 @@ module.exports = {
                     content: body.content,
             }));
 
-            mySockets.sockets.namespace.emit('connection_custom', { url: 'http://localhost:8080/api/select' });
+            objSockets.objSockets().emit('connection_custom', { url: 'http://localhost:8080/api/select' });
 
             res.status(200).json({
                 success: true,
@@ -49,7 +49,7 @@ module.exports = {
             const news = (await News.findOne({ where: { id: body.id } }));
             (await news.destroy());
 
-            mySockets.sockets.namespace.emit('connection_custom', { url: 'http://localhost:8080/api/select' });
+            objSockets.objSockets().emit('connection_custom', { url: 'http://localhost:8080/api/select' });
 
             res.status(200).json({
                 success: true,
